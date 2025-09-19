@@ -1,0 +1,1 @@
+A simple and intuitive Notes application built using Kotlin, Jetpack Compose, and Room Database. This app allows users to create, update, delete, and view notes with a clean and modern UI, following best practices in modern Android development.
