@@ -33,12 +33,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.dsaguider.data.Wish
 import com.example.dsaguider.data.WishViewModel
 import androidx.compose.material3.ExperimentalMaterial3Api // Needed for SwipeToDismissBoxState
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.dsaguider.data.Wish
+import com.example.dsaguider.screens.Screen
 
 @OptIn(ExperimentalMaterial3Api::class) // Needed for rememberSwipeToDismissBoxState
 @Composable
@@ -49,8 +51,8 @@ fun HomeView(
     val context = LocalContext.current
     Scaffold(
         topBar = {
-            AppBarView(title = "Notes") {
-                Toast.makeText(context, "Menu Button Clicked (Example)", Toast.LENGTH_SHORT).show()
+            AppBarView(title = "Item List") {
+                Toast.makeText(context, "Menu Button Clicked", Toast.LENGTH_SHORT).show()
             }
         },
         floatingActionButton = {
@@ -81,7 +83,7 @@ fun HomeView(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "No wishes yet. Tap '+' to add one!", // Consider stringResource
+                    text = "No Item yet. Tap '+' to add one!", // Consider stringResource
                     style = MaterialTheme.typography.headlineSmall
                 )
             }
@@ -176,13 +178,16 @@ fun WishItem(wish: Wish, onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp, start = 8.dp, end = 8.dp)
-            .clickable { onClick() },
+            .clickable {  onClick()},
         elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White) // Or use MaterialTheme.colorScheme.surface
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = wish.title, fontWeight = FontWeight.ExtraBold)
-            Text(text = wish.description, color = Color.Cyan)
+            Text(text = "Items : ${wish.title}" ,color = Color.Black )
+            Text(text = "Rating: ${wish.rating}", color = Color.Black)
+            Text(text = "Remarks : ${wish.remarks}", color = Color.Black)
+            Text(text = "Qty: ${wish.quantity}", color = Color.Black)
+
         }
     }
 }
